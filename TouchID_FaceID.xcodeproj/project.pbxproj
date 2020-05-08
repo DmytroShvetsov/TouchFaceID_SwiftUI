@@ -10,10 +10,11 @@
 		C00258F52462D2BC00407AA1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258F42462D2BC00407AA1 /* RootView.swift */; };
 		C00258F72462D2F500407AA1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258F62462D2F500407AA1 /* Application.swift */; };
 		C00258FE2462E74200407AA1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258FD2462E74200407AA1 /* SignInView.swift */; };
+		C01A0BEF2465B956001D7BA0 /* CustomEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */; };
+		C037299324656AE4003AA9AB /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037299224656AE4003AA9AB /* KeyboardAdaptive.swift */; };
 		C03BF87524642B6900F4B370 /* ResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF87424642B6900F4B370 /* ResponderView.swift */; };
 		C03BF87724643B4100F4B370 /* ResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF87624643B4100F4B370 /* ResponderTextField.swift */; };
 		C03BF8792464A56500F4B370 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF8782464A56500F4B370 /* Publishers+.swift */; };
-		C03BF87C2464A58200F4B370 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF87B2464A58200F4B370 /* Notification+.swift */; };
 		C067B53F246217FE007810B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B53E246217FE007810B0 /* AppDelegate.swift */; };
 		C067B541246217FE007810B0 /* MainSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B540246217FE007810B0 /* MainSceneDelegate.swift */; };
 		C067B543246217FE007810B0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B542246217FE007810B0 /* MainView.swift */; };
@@ -27,10 +28,11 @@
 		C00258F42462D2BC00407AA1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C00258F62462D2F500407AA1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		C00258FD2462E74200407AA1 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEmptyView.swift; sourceTree = "<group>"; };
+		C037299224656AE4003AA9AB /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		C03BF87424642B6900F4B370 /* ResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderView.swift; sourceTree = "<group>"; };
 		C03BF87624643B4100F4B370 /* ResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderTextField.swift; sourceTree = "<group>"; };
 		C03BF8782464A56500F4B370 /* Publishers+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
-		C03BF87B2464A58200F4B370 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		C067B53B246217FE007810B0 /* TouchID_FaceID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchID_FaceID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C067B53E246217FE007810B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C067B540246217FE007810B0 /* MainSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,11 +83,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C037299124656AC2003AA9AB /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C037299224656AE4003AA9AB /* KeyboardAdaptive.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		C03BF87A2464A56700F4B370 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				C03BF8782464A56500F4B370 /* Publishers+.swift */,
-				C03BF87B2464A58200F4B370 /* Notification+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -112,10 +121,12 @@
 				C00258F82462E68400407AA1 /* Application */,
 				C00258F92462E68F00407AA1 /* Scenes */,
 				C03BF87A2464A56700F4B370 /* Extensions */,
+				C037299124656AC2003AA9AB /* ViewModifiers */,
 				C0AB918C2464091900FA6AA4 /* AuthProvider.swift */,
 				C00258F42462D2BC00407AA1 /* RootView.swift */,
 				C067B542246217FE007810B0 /* MainView.swift */,
 				C00258FD2462E74200407AA1 /* SignInView.swift */,
+				C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */,
 				C03BF87424642B6900F4B370 /* ResponderView.swift */,
 				C03BF87624643B4100F4B370 /* ResponderTextField.swift */,
 				C00258FA2462E6AB00407AA1 /* Resources */,
@@ -203,10 +214,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C00258FE2462E74200407AA1 /* SignInView.swift in Sources */,
-				C03BF87C2464A58200F4B370 /* Notification+.swift in Sources */,
 				C00258F72462D2F500407AA1 /* Application.swift in Sources */,
+				C037299324656AE4003AA9AB /* KeyboardAdaptive.swift in Sources */,
 				C00258F52462D2BC00407AA1 /* RootView.swift in Sources */,
 				C067B53F246217FE007810B0 /* AppDelegate.swift in Sources */,
+				C01A0BEF2465B956001D7BA0 /* CustomEmptyView.swift in Sources */,
 				C0AB918D2464091900FA6AA4 /* AuthProvider.swift in Sources */,
 				C03BF87724643B4100F4B370 /* ResponderTextField.swift in Sources */,
 				C067B541246217FE007810B0 /* MainSceneDelegate.swift in Sources */,
