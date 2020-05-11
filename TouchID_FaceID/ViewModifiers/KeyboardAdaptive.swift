@@ -10,11 +10,14 @@ struct KeyboardAdaptive: ViewModifier {
         GeometryReader { geometry in
             content
                 .padding(.bottom, self.bottomPadding)
-                .onReceive(Publishers.keyboardHeight) { keyboardHeight in
+                .onReceive(Publishers.keyboardChange) { keyboardHeight, animationDuration in
                     let padding = self.receiveCompletion(geometry, keyboardHeight)
-                    self.bottomPadding = max(0, padding)
+                    DispatchQueue.main.async {
+                        withAnimation(.easeInOut(duration: animationDuration)) {
+                            self.bottomPadding = max(0, padding)
+                        }
+                    }
             }
-            .animation(.easeOut(duration: 0.25))
         }
     }
 }

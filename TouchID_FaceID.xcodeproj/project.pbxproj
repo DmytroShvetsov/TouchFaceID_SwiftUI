@@ -21,6 +21,7 @@
 		C067B54524621800007810B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C067B54424621800007810B0 /* Assets.xcassets */; };
 		C067B54824621800007810B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C067B54724621800007810B0 /* Preview Assets.xcassets */; };
 		C067B54B24621800007810B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C067B54924621800007810B0 /* LaunchScreen.storyboard */; };
+		C06FC7152469CDE700C6367E /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06FC7142469CDE700C6367E /* KeyboardHost.swift */; };
 		C0AB918D2464091900FA6AA4 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB918C2464091900FA6AA4 /* AuthProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		C067B54724621800007810B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C067B54A24621800007810B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C067B54C24621800007810B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C06FC7142469CDE700C6367E /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
 		C0AB918C2464091900FA6AA4 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */,
 				C03BF87424642B6900F4B370 /* ResponderView.swift */,
 				C03BF87624643B4100F4B370 /* ResponderTextField.swift */,
+				C06FC7142469CDE700C6367E /* KeyboardHost.swift */,
 				C00258FA2462E6AB00407AA1 /* Resources */,
 			);
 			path = TouchID_FaceID;
@@ -224,6 +227,7 @@
 				C067B541246217FE007810B0 /* MainSceneDelegate.swift in Sources */,
 				C03BF87524642B6900F4B370 /* ResponderView.swift in Sources */,
 				C03BF8792464A56500F4B370 /* Publishers+.swift in Sources */,
+				C06FC7152469CDE700C6367E /* KeyboardHost.swift in Sources */,
 				C067B543246217FE007810B0 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +369,7 @@
 				DEVELOPMENT_TEAM = 86F2YWC8GQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TouchID_FaceID/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +390,7 @@
 				DEVELOPMENT_TEAM = 86F2YWC8GQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TouchID_FaceID/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

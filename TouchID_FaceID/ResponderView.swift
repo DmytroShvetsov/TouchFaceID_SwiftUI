@@ -27,9 +27,18 @@ extension ResponderView {
         
         init(_ isFirstResponder: Binding<Bool>) {
             _isFirstResponder = isFirstResponder
-            self.anyCancellable = Publishers.keyboardHeight.sink(receiveValue: { [weak self] keyboardHeight in
+            self.anyCancellable = Publishers.keyboardChange.sink(receiveValue: { [weak self] keyboardHeight, _ in
                 guard let view = self?.view else { return }
-                DispatchQueue.main.async { self?.isFirstResponder = view.isFirstResponder }
+                DispatchQueue.main.async {
+                    if keyboardHeight.isZero && view.isFirstResponder {
+                        self?.isFirstResponder = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                            self?.isFirstResponder = true
+                        }
+                    } else {
+                        self?.isFirstResponder = view.isFirstResponder
+                    }
+                }
             })
         }
     }
