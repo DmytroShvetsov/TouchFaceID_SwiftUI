@@ -8,7 +8,7 @@ struct RootView: View {
             if authProvider.isAuthorized {
                 MainView()
             } else {
-                SignInView()
+                SignIn.SignInView(viewModel: .init())
             }
         }
     }

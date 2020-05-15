@@ -1,0 +1,113 @@
+import SwiftUI
+import Combine
+
+extension SignIn {
+    struct SignInView: View {
+        @ObservedObject var viewModel: SignInVM
+        
+        private var login: Binding<String>
+        private var password: Binding<String>
+        
+        @State private var isLoginFocused = false
+        @State private var isPasswordFocused = false
+        
+        init(viewModel: SignInVM) {
+            self.viewModel = viewModel
+            
+            login = .init(get: {
+                viewModel.state.login
+            }) {
+                viewModel.send(event: .typingLogin($0))
+            }
+            
+            password = .init(get: {
+                viewModel.state.password
+            }) {
+                viewModel.send(event: .typingPassword($0))
+            }
+        }
+        
+        var body: some View {
+            defer { endEditingIfNeeded() }
+            return GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+                    ZStack {
+                        self.background(geometry)
+                        self.content(geometry)
+                    }
+                }
+            }
+            .keyboardAdaptive()
+            .background(Color.init(white: 0.95))
+            .edgesIgnoringSafeArea(.all)
+        }
+        
+        private func background(_ geometry: GeometryProxy) -> some View {
+            CustomEmptyView()
+                .frame(width: geometry.size.width,
+                       height: geometry.size.height)
+                .onTapGesture { self.endEditing() }
+        }
+        
+        private func content(_ geometry: GeometryProxy) -> some View  {
+            VStack(alignment: .center) {
+                VStack(spacing: 0) {
+                    self.textField("Login", text: self.login, isFirstResponder: self.$isLoginFocused)
+                        .onTapGesture { self.isLoginFocused = true }
+                    Divider()
+                        .padding(.trailing, -10)
+                        .frame(height: 1, alignment: .trailing)
+                        .foregroundColor(.gray)
+                    self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused)
+                        .onTapGesture { self.isPasswordFocused = true }
+                    
+                }
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+                .overlay(RoundedRectangle(cornerRadius: 6)
+                .stroke(lineWidth: 1)
+                .foregroundColor(Color.gray))
+                .shadow(color: .green, radius: 2)
+                .overlay(LoaderView(isAnimating: .init(get: { () -> Bool in
+                    guard case .authorization = self.viewModel.state.state else { return false }
+                    return true
+                }, set: {_ in}))
+                    .clipShape(RoundedRectangle(cornerRadius: 6)))
+                
+                Button(action: {
+                    self.viewModel.send(event: .signIn)
+                }) {
+                    Text("Sign In")
+                        .padding(16)
+                }
+            }
+            .frame(idealWidth: geometry.size.width * 0.7,
+                   maxWidth: geometry.size.width * 0.7,
+                   minHeight: geometry.size.height)
+                .frame(width: geometry.size.width)
+        }
+        
+        private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>) -> some View {
+            ResponderTextField(placeholder, text: text, isFirstResponder: isFirstResponder)
+                .frame(height: 38)
+                .padding([.top, .bottom], 5)
+                .padding([.leading, .trailing], 10)
+        }
+        
+        private func endEditingIfNeeded() {
+            guard case .authorization = self.viewModel.state.state else { return }
+            DispatchQueue.main.async { self.endEditing() }
+        }
+        
+        private func endEditing() {
+            isLoginFocused = false
+            isPasswordFocused = false
+        }
+    }
+}
+
+struct SignInView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignIn.SignInView(viewModel: .init())
+    }
+}
