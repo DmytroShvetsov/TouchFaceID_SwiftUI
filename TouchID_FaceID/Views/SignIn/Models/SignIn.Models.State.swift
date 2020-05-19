@@ -16,5 +16,15 @@ extension SignIn.Models.State {
             authorization,
             authorized,
             error(Error)
+        
+        var error: Error? {
+            switch self {
+                case .error(let error):
+                    return error
+                
+                default:
+                    return nil
+            }
+        }
     }
 }

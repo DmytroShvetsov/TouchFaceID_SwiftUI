@@ -54,12 +54,22 @@ private extension VM {
                     case .viewEvent(.typingLogin(let txt)):
                         guard state.login != txt else { break }
                         state.login = txt
+                        state.state = .default
                     
                     case .viewEvent(.typingPassword(let txt)):
                         guard state.password != txt else { break }
                         state.password = txt
+                        state.state = .default
                     
                     case .viewEvent(.signIn):
+                        guard !state.login.isEmpty else {
+                            state.state = .error(AppError.init(error: "Login should not be empty."))
+                            break
+                        }
+                        guard !state.password.isEmpty else {
+                            state.state = .error(AppError.init(error: "Password should not be empty."))
+                            break
+                        }
                         state.state = .authorization
                     
                     default:
@@ -94,9 +104,11 @@ private extension VM {
                         case .failed(let error):
                             return Event.failed(error)
                     }
-                }
-                .catch { Just(.failed($0)) }
-                .eraseToAnyPublisher()
+            }
+            .delay(for: .seconds(1), scheduler: DispatchQueue.main) // MARK: - for showcase purposes;
+            .replaceError(with: .authorized("token")) // MARK: - for showcase purposes;
+            .replaceError(with: .failed(AppError(error: "Error. Please try again.")))
+            .eraseToAnyPublisher()
         }
     }
 

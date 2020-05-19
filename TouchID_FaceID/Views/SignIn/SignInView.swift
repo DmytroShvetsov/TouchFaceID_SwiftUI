@@ -67,18 +67,22 @@ extension SignIn {
                 .overlay(RoundedRectangle(cornerRadius: 6)
                 .stroke(lineWidth: 1)
                 .foregroundColor(Color.gray))
-                .shadow(color: .green, radius: 2)
+                .shadow(color: viewModel.state.state.error == nil ? .green : .red, radius: 2)
                 .overlay(LoaderView(isAnimating: .init(get: { () -> Bool in
                     guard case .authorization = self.viewModel.state.state else { return false }
                     return true
                 }, set: {_ in}))
                     .clipShape(RoundedRectangle(cornerRadius: 6)))
                 
+                errorView
+                
                 Button(action: {
                     self.viewModel.send(event: .signIn)
                 }) {
                     Text("Sign In")
-                        .padding(16)
+                        .padding(.top, 14)
+                        .padding([.leading, .bottom, .trailing], 16)
+                    
                 }
             }
             .frame(idealWidth: geometry.size.width * 0.7,
@@ -92,6 +96,16 @@ extension SignIn {
                 .frame(height: 38)
                 .padding([.top, .bottom], 5)
                 .padding([.leading, .trailing], 10)
+        }
+        
+        private var errorView: some View {
+            Text(viewModel.state.state.error?.localizedDescription ?? "")
+                .font(.caption)
+                .foregroundColor(Color.red)
+                .padding(.top, 2)
+                .opacity(viewModel.state.state.error == nil ? 0 : 1)
+                .animation(.easeInOut(duration: 0.15))
+                .clipped()
         }
         
         private func endEditingIfNeeded() {
