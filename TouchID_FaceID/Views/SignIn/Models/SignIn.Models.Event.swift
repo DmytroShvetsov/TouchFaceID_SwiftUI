@@ -4,6 +4,7 @@ extension SignIn.Models {
     enum Event {
         case
             viewEvent(ViewEvent),
-            authorizationBegun
+            authorized(_ token: String),
+            failed(Error)
     }
 }

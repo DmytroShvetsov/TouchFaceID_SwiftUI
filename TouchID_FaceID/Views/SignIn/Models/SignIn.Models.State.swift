@@ -13,6 +13,8 @@ extension SignIn.Models.State {
     enum State {
         case
             `default`,
-            authorization(proceeding: Bool)
+            authorization,
+            authorized,
+            error(Error)
     }
 }

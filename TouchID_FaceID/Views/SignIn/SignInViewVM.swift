@@ -46,7 +46,10 @@ private extension VM {
         var state = state
         
         switch state.state {
-            case .default:
+            case
+                .authorized,
+                .error,
+                .default:
                 switch event {
                     case .viewEvent(.typingLogin(let txt)):
                         guard state.login != txt else { break }
@@ -57,46 +60,43 @@ private extension VM {
                         state.password = txt
                     
                     case .viewEvent(.signIn):
-                        if case .authorization = state.state { break }
-                        state.state = .authorization(proceeding: false)
+                        state.state = .authorization
                     
                     default:
                         break
                 }
             
-            case .authorization(false):
+            case .authorization:
                 switch event {
-                    case .authorizationBegun:
-                        state.state = .authorization(proceeding: true)
+                    case .authorized:
+                        state.state = .authorized
+                    
+                    case .failed(let error):
+                        state.state = .error(error)
                     
                     default:
                         break
                 }
-            
-            default:
-                break
         }
 
         return state
     }
-
-//    static func whenLoading() -> Feedback<State, Event> {
-//        Feedback { (state: State) -> AnyPublisher<Event, Never> in
-//            guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-//
-//            return MoviesAPI.trending()
-//                .map { $0.results.map(ListItem.init) }
-//                .map(Event.onMoviesLoaded)
-//                .catch { Just(Event.onFailedToLoadMovies($0)) }
-//                .eraseToAnyPublisher()
-//        }
-//    }
     
     static func authorization() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
-            guard case .authorization(let proceeding) = state.state, !proceeding else { return Empty().eraseToAnyPublisher() }
-            print(213)
-            return CurrentValueSubject(.authorizationBegun).eraseToAnyPublisher()
+            guard case .authorization = state.state else { return Empty().eraseToAnyPublisher() }
+            
+            return Network.SampleProvider.signIn(login: state.login, password: state.password)
+                .map {
+                    switch $0 {
+                        case .success(let token):
+                            return Event.authorized(token)
+                        case .failed(let error):
+                            return Event.failed(error)
+                    }
+                }
+                .catch { Just(.failed($0)) }
+                .eraseToAnyPublisher()
         }
     }
 
