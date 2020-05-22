@@ -20,12 +20,18 @@ extension SignIn {
                        reduce: Self.reduce,
                        scheduler: RunLoop.main,
                        feedbacks: [
-                           Self.userInput(input: input.eraseToAnyPublisher()),
+                           Self.input(input: input.eraseToAnyPublisher()),
                            Self.authorization()
                        ]
                    )
                    .assign(to: \.state, on: self)
                    .store(in: &bag)
+            
+            ServicesFactory.userService().user
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] user in
+                    self?.send(event: .previousUserLogin(user.login))
+            }.cancel()
         }
     }
 }
@@ -46,10 +52,21 @@ private extension VM {
         var state = state
         
         switch state.state {
+            case .default:
+                switch event {
+                    case .previousUserLogin(let login):
+                        guard state.login != login else { break }
+                        state.login = login
+                        
+                    default:
+                        break
+                }
+            
+                fallthrough
+            
             case
                 .authorized,
-                .error,
-                .default:
+                .error:
                 switch event {
                     case .viewEvent(.typingLogin(let txt)):
                         guard state.login != txt else { break }
@@ -96,7 +113,7 @@ private extension VM {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
             guard case .authorization = state.state else { return Empty().eraseToAnyPublisher() }
             
-            return Network.SampleProvider.signIn(login: state.login, password: state.password)
+            return ServicesFactory.authService().signIn(login: state.login, password: state.password)
                 .map {
                     switch $0 {
                         case .success(let token):
@@ -105,14 +122,12 @@ private extension VM {
                             return Event.failed(error)
                     }
             }
-            .delay(for: .seconds(1), scheduler: DispatchQueue.main) // MARK: - for showcase purposes;
-            .replaceError(with: .authorized("token")) // MARK: - for showcase purposes;
             .replaceError(with: .failed(AppError(error: "Error. Please try again.")))
             .eraseToAnyPublisher()
         }
     }
 
-    static func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
+    static func input(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
     }
 }

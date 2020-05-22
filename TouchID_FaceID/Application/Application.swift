@@ -5,9 +5,3 @@ import Foundation
 //    
 //    private init() {}
 //}
-
-//extension Application {
-//    static var isAuthorized: Bool {
-//        false
-//    }
-//}
