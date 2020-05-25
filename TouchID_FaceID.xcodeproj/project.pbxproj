@@ -71,6 +71,11 @@
 		C0CCDDC02472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDBF2472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift */; };
 		C0CCDDC22472EDB800543311 /* Codable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDC12472EDB800543311 /* Codable+.swift */; };
 		C0CCDDC424730F4100543311 /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDC324730F4100543311 /* PluginType.swift */; };
+		C0FFE41F24789EC800456403 /* Main.Models.Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE41E24789EC800456403 /* Main.Models.Event.swift */; };
+		C0FFE42124789ED500456403 /* Main.Models.ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE42024789ED500456403 /* Main.Models.ViewEvent.swift */; };
+		C0FFE42324789EDF00456403 /* Main.Models.State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE42224789EDF00456403 /* Main.Models.State.swift */; };
+		C0FFE42524789EEA00456403 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE42424789EEA00456403 /* MainVM.swift */; };
+		C0FFE4272478A0F100456403 /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE4262478A0F100456403 /* MainProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +145,11 @@
 		C0CCDDBF2472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.Responses.ErrorResponse.swift; sourceTree = "<group>"; };
 		C0CCDDC12472EDB800543311 /* Codable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+.swift"; sourceTree = "<group>"; };
 		C0CCDDC324730F4100543311 /* PluginType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginType.swift; sourceTree = "<group>"; };
+		C0FFE41E24789EC800456403 /* Main.Models.Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.Event.swift; sourceTree = "<group>"; };
+		C0FFE42024789ED500456403 /* Main.Models.ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.ViewEvent.swift; sourceTree = "<group>"; };
+		C0FFE42224789EDF00456403 /* Main.Models.State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.State.swift; sourceTree = "<group>"; };
+		C0FFE42424789EEA00456403 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		C0FFE4262478A0F100456403 /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +495,9 @@
 		C0B46911247415100020FCF6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C0FFE41D24789EB000456403 /* Models */,
+				C0FFE4262478A0F100456403 /* MainProtocols.swift */,
+				C0FFE42424789EEA00456403 /* MainVM.swift */,
 				C067B542246217FE007810B0 /* MainView.swift */,
 			);
 			path = Main;
@@ -533,6 +546,16 @@
 			children = (
 				C0C743C42478691900FE7E04 /* Root.Models.Event.swift */,
 				C0C743C82478692E00FE7E04 /* Root.Models.State.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C0FFE41D24789EB000456403 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C0FFE41E24789EC800456403 /* Main.Models.Event.swift */,
+				C0FFE42024789ED500456403 /* Main.Models.ViewEvent.swift */,
+				C0FFE42224789EDF00456403 /* Main.Models.State.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -619,8 +642,11 @@
 				C0B4690A24740CDC0020FCF6 /* Common.swift in Sources */,
 				C00258F72462D2F500407AA1 /* Application.swift in Sources */,
 				C077706A2470606A00759F35 /* TargetType.swift in Sources */,
+				C0FFE4272478A0F100456403 /* MainProtocols.swift in Sources */,
+				C0FFE42524789EEA00456403 /* MainVM.swift in Sources */,
 				C077706824705F4600759F35 /* Network.Core.SessionDelegate.swift in Sources */,
 				C037299324656AE4003AA9AB /* Common.UI.ViewModifiers.KeyboardAdaptive.swift in Sources */,
+				C0FFE42124789ED500456403 /* Main.Models.ViewEvent.swift in Sources */,
 				C0377A73247423B8007345DA /* Network.Common.Responses.GoogleAPI.swift in Sources */,
 				C0C743C02478687000FE7E04 /* RootViewVM.swift in Sources */,
 				C077706E2470609B00759F35 /* Network.Common.Task.swift in Sources */,
@@ -647,6 +673,7 @@
 				C071AD6C246D6AA500442B1F /* SignInViewVM.swift in Sources */,
 				C01A46B22477441F00EDA24E /* UserDefault.swift in Sources */,
 				C0C743C52478691900FE7E04 /* Root.Models.Event.swift in Sources */,
+				C0FFE41F24789EC800456403 /* Main.Models.Event.swift in Sources */,
 				C077707E247076EA00759F35 /* AnyCodable.swift in Sources */,
 				C0B4690F24740E3F0020FCF6 /* Common.UI.swift in Sources */,
 				C07770742470642100759F35 /* Network.Common.Error.swift in Sources */,
@@ -662,6 +689,7 @@
 				C071AD99246DE7AD00442B1F /* Publishers.System.swift in Sources */,
 				C071AD6E246D6B1B00442B1F /* SignInProtocols.swift in Sources */,
 				C0B4690324740A7F0020FCF6 /* Network.Core.Plugins.TimeoutRequest.swift in Sources */,
+				C0FFE42324789EDF00456403 /* Main.Models.State.swift in Sources */,
 				C0052804247458A000E66057 /* Network.Common.Responses.AuthResponse.swift in Sources */,
 				C055AB79247731720020A5F9 /* ServicesFactory.swift in Sources */,
 				C077706624705EA400759F35 /* Network.Core.DataProvider.swift in Sources */,

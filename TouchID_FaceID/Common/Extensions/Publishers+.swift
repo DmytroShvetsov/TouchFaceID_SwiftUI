@@ -15,3 +15,12 @@ extension Publishers {
         .eraseToAnyPublisher()
     }
 }
+
+// MARK: - assignWeak
+extension Publisher where Self.Failure == Never {
+    func assignWeak<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable {
+        sink { [weak object] in
+            object?[keyPath: keyPath] = $0
+        }
+    }
+}

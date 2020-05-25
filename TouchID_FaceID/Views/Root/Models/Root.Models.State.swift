@@ -1,8 +1,9 @@
 import Foundation
 
 extension Root.Models {
-    enum State {
+    enum State: Equatable {
         case
+            `default`,
             authorized,
             notAuthorized
     }

@@ -7,9 +7,11 @@ extension Root {
         var body: some View {
             Group {
                 if viewModel.state == .authorized {
-                    MainView()
-                } else {
+                    Main.MainView(viewModel: .init())
+                } else if viewModel.state == .notAuthorized {
                     SignIn.SignInView(viewModel: .init())
+                } else {
+                    EmptyView()
                 }
             }
         }

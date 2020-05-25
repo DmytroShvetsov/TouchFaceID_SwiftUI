@@ -50,8 +50,12 @@ private extension UserServiceImpl {
     static let queue = DispatchQueue(label: "UserService.queue", qos: .default)
    
     @UserDefaultCodable("UserServiceImpl.user", defaultValue: .init(info: .init(), login: "", status: .inactive))
+    static var _user: User
+    
     static var user: User {
-        didSet {
+        get { _user }
+        set {
+            _user = newValue
             userPublisher.send(user)
         }
     }

@@ -12,18 +12,21 @@ extension Root {
         private var bag: Set<AnyCancellable> = .init()
         
         init() {
-            state = .notAuthorized
+            state = .default
             
             Publishers.system(
-                       initial: state,
-                       reduce: Self.reduce,
-                       scheduler: RunLoop.main,
-                       feedbacks: [
-                           Self.isAuthorized()
-                       ]
-                   )
-                   .assign(to: \.state, on: self)
-                   .store(in: &bag)
+                initial: state,
+                reduce: Self.reduce,
+                scheduler: RunLoop.main,
+                feedbacks: [
+                    Self.isAuthorized()
+                ],
+                skipTransitionStates: true,
+                skipInitialState: true,
+                removeDuplicates: true
+            )
+                .assignWeak(to: \.state, on: self)
+                .store(in: &bag)
         }
     }
 }

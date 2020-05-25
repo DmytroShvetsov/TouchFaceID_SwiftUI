@@ -7,31 +7,29 @@ private typealias State = SignIn.Models.State
 
 extension SignIn {
     final class SignInVM: ObservableObject {
-        @Published var state: Models.State
+        @Published private(set) var state: Models.State
         
         private var bag: Set<AnyCancellable> = .init()
         private let input = PassthroughSubject<Event, Never>()
         
         init() {
-            state = .init(login: "", password: "", state: .default)
-            
+            state = .init(login: "", password: "", state: .idle)
+
             Publishers.system(
-                       initial: state,
-                       reduce: Self.reduce,
-                       scheduler: RunLoop.main,
-                       feedbacks: [
-                           Self.input(input: input.eraseToAnyPublisher()),
-                           Self.authorization()
-                       ]
-                   )
-                   .assign(to: \.state, on: self)
-                   .store(in: &bag)
-            
-            ServicesFactory.userService().user
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] user in
-                    self?.send(event: .previousUserLogin(user.login))
-            }.cancel()
+                initial: state,
+                reduce: Self.reduce,
+                scheduler: RunLoop.main,
+                feedbacks: [
+                    Self.input(input: input.eraseToAnyPublisher()),
+                    Self.authorization(),
+                    Self.previousUserLogin()
+                ],
+                skipTransitionStates: true,
+                skipInitialState: true,
+                removeDuplicates: true
+            )
+                .assignWeak(to: \.state, on: self)
+                .store(in: &bag)
         }
     }
 }
@@ -52,6 +50,10 @@ private extension VM {
         var state = state
         
         switch state.state {
+            case .idle:
+                state.state = .default
+                fallthrough
+            
             case .default:
                 switch event {
                     case .previousUserLogin(let login):
@@ -127,6 +129,17 @@ private extension VM {
         }
     }
 
+    static func previousUserLogin() -> Feedback<State, Event> {
+        Feedback { (state: State) -> AnyPublisher<Event, Never> in
+            guard case .idle = state.state else { return Empty().eraseToAnyPublisher() }
+            
+            return ServicesFactory.userService().user
+                .receive(on: DispatchQueue.main)
+                .map { .previousUserLogin($0.login) }
+                .eraseToAnyPublisher()
+        }
+    }
+    
     static func input(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
     }
