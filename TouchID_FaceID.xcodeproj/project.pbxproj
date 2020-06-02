@@ -82,6 +82,7 @@
 		C00258F42462D2BC00407AA1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C00258F62462D2F500407AA1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		C00258FD2462E74200407AA1 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		C002A10D2486F090008C4BD0 /* TouchID_FaceID.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouchID_FaceID.entitlements; sourceTree = "<group>"; };
 		C0052803247458A000E66057 /* Network.Common.Responses.AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.Responses.AuthResponse.swift; sourceTree = "<group>"; };
 		C005280624745A1C00E66057 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEmptyView.swift; sourceTree = "<group>"; };
@@ -518,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				C067B54C24621800007810B0 /* Info.plist */,
+				C002A10D2486F090008C4BD0 /* TouchID_FaceID.entitlements */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -832,6 +834,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TouchID_FaceID/Supporting Files/TouchID_FaceID.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "TouchID_FaceID/Resources/Assets/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 86F2YWC8GQ;
@@ -844,6 +847,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.TouchID-FaceID";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -853,6 +857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TouchID_FaceID/Supporting Files/TouchID_FaceID.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "TouchID_FaceID/Resources/Assets/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = 86F2YWC8GQ;
@@ -865,6 +870,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.TouchID-FaceID";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

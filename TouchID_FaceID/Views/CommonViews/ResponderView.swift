@@ -5,14 +5,17 @@ struct ResponderView<View: UIView>: UIViewRepresentable {
     @Binding var isFirstResponder: Bool
     var configuration = { (view: View) in }
     
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> View { View() }
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> View {
+        let view = View()
+        context.coordinator.view = view
+        return view
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator($isFirstResponder)
     }
     
     func updateUIView(_ uiView: View, context: UIViewRepresentableContext<Self>) {
-        context.coordinator.view = uiView
         _ = isFirstResponder ? uiView.becomeFirstResponder() : uiView.resignFirstResponder()
         configuration(uiView)
     }
