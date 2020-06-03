@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E76658F2487AE0F00700E74 /* ResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76658E2487AE0F00700E74 /* ResponderTextField.swift */; };
 		C00258F52462D2BC00407AA1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258F42462D2BC00407AA1 /* RootView.swift */; };
 		C00258F72462D2F500407AA1 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258F62462D2F500407AA1 /* Application.swift */; };
 		C00258FE2462E74200407AA1 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00258FD2462E74200407AA1 /* SignInView.swift */; };
@@ -22,8 +23,6 @@
 		C0377A6F247421A9007345DA /* Network.Common.Requests.SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0377A6E247421A9007345DA /* Network.Common.Requests.SignIn.swift */; };
 		C0377A71247422A4007345DA /* Network.SampleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0377A70247422A4007345DA /* Network.SampleProvider.swift */; };
 		C0377A73247423B8007345DA /* Network.Common.Responses.GoogleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0377A72247423B8007345DA /* Network.Common.Responses.GoogleAPI.swift */; };
-		C03BF87524642B6900F4B370 /* ResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF87424642B6900F4B370 /* ResponderView.swift */; };
-		C03BF87724643B4100F4B370 /* ResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF87624643B4100F4B370 /* ResponderTextField.swift */; };
 		C03BF8792464A56500F4B370 /* Publishers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03BF8782464A56500F4B370 /* Publishers+.swift */; };
 		C055AB73247714480020A5F9 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055AB72247714480020A5F9 /* UserService.swift */; };
 		C055AB75247715B40020A5F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055AB74247715B40020A5F9 /* User.swift */; };
@@ -79,6 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E76658E2487AE0F00700E74 /* ResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderTextField.swift; sourceTree = "<group>"; };
 		C00258F42462D2BC00407AA1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C00258F62462D2F500407AA1 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		C00258FD2462E74200407AA1 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -95,8 +95,6 @@
 		C0377A6E247421A9007345DA /* Network.Common.Requests.SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.Requests.SignIn.swift; sourceTree = "<group>"; };
 		C0377A70247422A4007345DA /* Network.SampleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.SampleProvider.swift; sourceTree = "<group>"; };
 		C0377A72247423B8007345DA /* Network.Common.Responses.GoogleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.Responses.GoogleAPI.swift; sourceTree = "<group>"; };
-		C03BF87424642B6900F4B370 /* ResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderView.swift; sourceTree = "<group>"; };
-		C03BF87624643B4100F4B370 /* ResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponderTextField.swift; sourceTree = "<group>"; };
 		C03BF8782464A56500F4B370 /* Publishers+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publishers+.swift"; sourceTree = "<group>"; };
 		C055AB72247714480020A5F9 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C055AB74247715B40020A5F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -255,10 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				C01A0BEE2465B956001D7BA0 /* CustomEmptyView.swift */,
-				C03BF87424642B6900F4B370 /* ResponderView.swift */,
-				C03BF87624643B4100F4B370 /* ResponderTextField.swift */,
 				C05BE1E0246EAF7300B6CECD /* LoaderView.swift */,
 				C05BE1E2246EB5AD00B6CECD /* ActivityIndicatorView.swift */,
+				4E76658E2487AE0F00700E74 /* ResponderTextField.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -661,15 +658,14 @@
 				C0CCDDC02472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift in Sources */,
 				C0B4690524740A7F0020FCF6 /* Network.Core.Plugins.NetworkActivity.swift in Sources */,
 				C01A0BEF2465B956001D7BA0 /* CustomEmptyView.swift in Sources */,
-				C03BF87724643B4100F4B370 /* ResponderTextField.swift in Sources */,
 				C071AD9C246DEEB400442B1F /* SignIn.Models.State.swift in Sources */,
 				C067B541246217FE007810B0 /* MainSceneDelegate.swift in Sources */,
+				4E76658F2487AE0F00700E74 /* ResponderTextField.swift in Sources */,
 				C0377A71247422A4007345DA /* Network.SampleProvider.swift in Sources */,
 				C07770702470615A00759F35 /* URLRequest+.swift in Sources */,
 				C0CCDDBE2472CA2E00543311 /* Network.Common.Parsers.swift in Sources */,
 				C0CCDDC22472EDB800543311 /* Codable+.swift in Sources */,
 				C0377A6F247421A9007345DA /* Network.Common.Requests.SignIn.swift in Sources */,
-				C03BF87524642B6900F4B370 /* ResponderView.swift in Sources */,
 				C0377A6924741C9A007345DA /* Network.Common.SampleAPI.swift in Sources */,
 				C03BF8792464A56500F4B370 /* Publishers+.swift in Sources */,
 				C071AD6C246D6AA500442B1F /* SignInViewVM.swift in Sources */,

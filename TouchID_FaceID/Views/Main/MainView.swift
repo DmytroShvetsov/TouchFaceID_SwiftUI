@@ -44,8 +44,7 @@ extension Main {
                     .foregroundColor(Color.init(white: 0.3))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 6)
-                
-                ResponderTextField("e.g. Peter", text: self.name, isFirstResponder: self.$isNameFocused)
+                ResponderTextField("e.g. Peter", placeholderColor: .gray, text: self.name, textColor: .black, isFirstResponder: self.$isNameFocused)
                     .frame(height: 38)
                     .padding([.top, .bottom], 5)
                     .padding([.leading, .trailing], 10)

@@ -92,7 +92,7 @@ extension SignIn {
         }
         
         private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>) -> some View {
-            ResponderTextField(placeholder, text: text, isFirstResponder: isFirstResponder)
+            ResponderTextField(placeholder, placeholderColor: .gray, text: text, textColor: .black, isFirstResponder: isFirstResponder)
                 .frame(height: 38)
                 .padding([.top, .bottom], 5)
                 .padding([.leading, .trailing], 10)
