@@ -91,3 +91,13 @@ extension ResponderTextField {
         }
     }
 }
+
+
+struct ResponderTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        ResponderTextField("placeholder", placeholderColor: .gray,
+                           text: .constant(""), textColor: .black,
+                           isFirstResponder: .constant(false))
+            .previewLayout(.fixed(width: 300, height: 100))
+    }
+}
