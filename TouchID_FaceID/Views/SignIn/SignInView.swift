@@ -41,7 +41,7 @@ extension SignIn {
                         }
                     }
                 }
-                .keyboardAdaptive()
+                .keyboardAdaptive { $1 - max($0.size.height - $1 - $1, 0) }
                 .edgesIgnoringSafeArea([.bottom, .top])
             }
         }

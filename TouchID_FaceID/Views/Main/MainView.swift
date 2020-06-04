@@ -19,14 +19,18 @@ extension Main {
         }
         
         var body: some View {
-            GeometryReader { geometry in
-                ZStack {
-                    self.background(geometry)
-                    self.content(geometry)
+            ZStack {
+                Color.appBackground
+                    .edgesIgnoringSafeArea(.all)
+                
+                GeometryReader { geometry in
+                    ZStack {
+                        self.background(geometry)
+                        self.content(geometry)
+                    }
                 }
             }
-            .keyboardAdaptive()
-            .background(Color.appBackground)
+            .keyboardAdaptive { $1 - max($0.size.height - $1 - $1, 0) }
             .edgesIgnoringSafeArea(.all)
         }
         
