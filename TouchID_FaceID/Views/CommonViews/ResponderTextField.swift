@@ -98,6 +98,7 @@ struct ResponderTextField_Previews: PreviewProvider {
         ResponderTextField("placeholder", placeholderColor: .gray,
                            text: .constant(""), textColor: .black,
                            isFirstResponder: .constant(false))
-            .previewLayout(.fixed(width: 300, height: 100))
+            .previewLayout(.fixed(width: 250, height: 50))
+            .previewsPreset()
     }
 }

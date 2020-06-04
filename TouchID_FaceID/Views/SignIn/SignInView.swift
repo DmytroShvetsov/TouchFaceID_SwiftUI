@@ -127,12 +127,8 @@ extension SignIn {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            SignIn.SignInView(viewModel: .init())
-                .environment(\.colorScheme, .light)
-            
-            SignIn.SignInView(viewModel: .init())
-                .environment(\.colorScheme, .dark)
-        }
+        SignIn.SignInView(viewModel: .init())
+            .previewLayout(.device)
+            .previewsPreset()
     }
 }

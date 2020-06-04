@@ -79,12 +79,8 @@ extension Main {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            Main.MainView(viewModel: .init())
-                .environment(\.colorScheme, .light)
-        
-            Main.MainView(viewModel: .init())
-                .environment(\.colorScheme, .dark)
-        }
+        Main.MainView(viewModel: .init())
+            .previewLayout(.device)
+            .previewsPreset()
     }
 }

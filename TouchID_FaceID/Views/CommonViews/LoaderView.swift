@@ -17,15 +17,12 @@ struct LoaderView: View {
 struct LoaderView_Previews: PreviewProvider {
     static var previews: some View {
         let view = LoaderView(isAnimating: .constant(true))
-            .background(Color.appContrastBackground)
+            .previewLayout(.fixed(width: 300, height: 100))
         
         return Group {
             view
-                .environment(\.colorScheme, .light)
-            
             view
-                .environment(\.colorScheme, .dark)
+                .previewDarkTheme()
         }
-        .previewLayout(.fixed(width: 400, height: 200))
     }
 }
