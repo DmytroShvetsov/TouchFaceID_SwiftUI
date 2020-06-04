@@ -1,15 +1,15 @@
 import Foundation
 
-enum Environment {
+enum BuildEnvironment {
     case
         debug,
         release
 }
 
-extension Environment {
+extension BuildEnvironment {
     static let stubbed = NSClassFromString("XCTest") != nil
     
-    static var current: Environment = {
+    static var current: BuildEnvironment = {
         #if DEBUG
             return .debug
         #elseif RELEASE

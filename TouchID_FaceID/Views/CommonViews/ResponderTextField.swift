@@ -92,7 +92,6 @@ extension ResponderTextField {
     }
 }
 
-
 struct ResponderTextField_Previews: PreviewProvider {
     static var previews: some View {
         ResponderTextField("placeholder", placeholderColor: .gray,

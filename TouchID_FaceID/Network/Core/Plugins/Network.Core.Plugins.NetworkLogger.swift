@@ -15,7 +15,7 @@ extension Network.Core.Plugins.NetworkLogger: PluginType {
         print("URL: \(request.url?.absoluteString ?? "")")
         print("HTTP Headers: \(request.allHTTPHeaderFields ?? [:])")
         print("Task: \(target.task)")
-        if Environment.current != .release, let body = request.httpBody {
+        if BuildEnvironment.current != .release, let body = request.httpBody {
             if let bodyJson = try? JSONSerialization.jsonObject(with: body, options: []) {
                 print("Body: \(bodyJson)")
             } else if let bodyString = String.init(data: body, encoding: .utf8) {
