@@ -43,6 +43,9 @@ struct ResponderTextField: UIViewRepresentable {
             textField.semanticContentAttribute = .forceLeftToRight
         }
         
+        textField.adjustsFontForContentSizeCategory = true
+        textField.font = UIFont.preferredFont(forTextStyle: .body)
+        
         return textField
     }
     
