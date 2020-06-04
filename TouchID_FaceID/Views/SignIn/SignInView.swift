@@ -29,17 +29,21 @@ extension SignIn {
         
         var body: some View {
             defer { endEditingIfNeeded() }
-            return GeometryReader { geometry in
-                ScrollView(showsIndicators: false) {
-                    ZStack {
-                        self.background(geometry)
-                        self.content(geometry)
+            return ZStack {
+                Color.appBackground
+                    .edgesIgnoringSafeArea(.all)
+                
+                GeometryReader { geometry in
+                    ScrollView(showsIndicators: false) {
+                        ZStack {
+                            self.background(geometry)
+                            self.content(geometry)
+                        }
                     }
                 }
+                .keyboardAdaptive()
+                .edgesIgnoringSafeArea([.bottom, .top])
             }
-            .keyboardAdaptive()
-            .background(Color.appBackground)
-            .edgesIgnoringSafeArea(.all)
         }
         
         private func background(_ geometry: GeometryProxy) -> some View {

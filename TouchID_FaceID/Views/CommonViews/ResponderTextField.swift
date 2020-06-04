@@ -62,7 +62,7 @@ extension ResponderTextField {
             
             #if !targetEnvironment(macCatalyst)
             anyCancellable = Publishers.keyboardChange.sink(receiveValue: { [weak self] keyboardHeight, _ in
-                guard keyboardHeight.isZero && self?.isFirstResponder == true else { return }
+                guard keyboardHeight < 100 && self?.isFirstResponder == true else { return }
                 
                 DispatchQueue.main.async {
                     self?.isFirstResponder = false
