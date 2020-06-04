@@ -26,7 +26,7 @@ extension Main {
                 }
             }
             .keyboardAdaptive()
-            .background(Color.init(white: 0.95))
+            .background(Color.appBackground)
             .edgesIgnoringSafeArea(.all)
         }
         
@@ -41,19 +41,19 @@ extension Main {
             VStack(alignment: .center, spacing: 0) {
                 Text("User name:")
                     .font(.subheadline)
-                    .foregroundColor(Color.init(white: 0.3))
+                    .foregroundColor(.appCaptionOut)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 6)
-                ResponderTextField("e.g. Peter", placeholderColor: .gray, text: self.name, textColor: .black, isFirstResponder: self.$isNameFocused)
+                ResponderTextField("e.g. Peter", placeholderColor: .appGray, text: self.name, textColor: .appText, isFirstResponder: self.$isNameFocused)
                     .frame(height: 38)
                     .padding([.top, .bottom], 5)
                     .padding([.leading, .trailing], 10)
-                    .background(Color.white)
+                    .background(Color.appContrastBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 6))
                     .overlay(RoundedRectangle(cornerRadius: 6)
                         .stroke(lineWidth: 1)
-                        .foregroundColor(Color.init(white: 0.7)))
-                    .shadow(color: Color.green, radius: 1)
+                        .foregroundColor(.appGray))
+                    .shadow(color: Color.appGreen, radius: 1)
                 
                 Spacer().frame(height: 10)
                 
@@ -61,6 +61,7 @@ extension Main {
                     self.viewModel.send(event: .logout)
                 }) {
                     Text("Logout")
+                        .foregroundColor(.appBlue)
                         .padding(.all, 15)
                 }
                 
@@ -78,6 +79,12 @@ extension Main {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        Main.MainView(viewModel: .init())
+        Group {
+            Main.MainView(viewModel: .init())
+                .environment(\.colorScheme, .light)
+        
+            Main.MainView(viewModel: .init())
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
