@@ -73,6 +73,7 @@ extension ResponderTextField {
             super.init()
             
             #if !targetEnvironment(macCatalyst)
+            guard UIDevice.current.userInterfaceIdiom != .pad else { return }
             anyCancellable = Publishers.keyboardChange.sink(receiveValue: { [weak self] keyboardHeight, _ in
                 guard keyboardHeight < 100 && self?.isFirstResponder == true else { return }
                 
