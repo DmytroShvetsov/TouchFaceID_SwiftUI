@@ -90,7 +90,7 @@ extension View {
                                                                       padding: padding))
     }
     
-    func iconOverlaySecureEntry(isSecureEntry: Binding<Bool>) -> some View {
+    func iconOverlaySecureEntry(_ isSecureEntry: Binding<Bool>) -> some View {
         let iconName = isSecureEntry.wrappedValue ? "eye.fill" : "eye.slash.fill"
         return iconOverlay(image: .init(image: .init(systemName: iconName), color: .init(.appIconGray)),
                            action: { isSecureEntry.wrappedValue.toggle() },

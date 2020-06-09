@@ -64,7 +64,7 @@ extension SignIn {
                         .frame(height: 1, alignment: .trailing)
                         .foregroundColor(.appGray)
                     self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused, isSecureEntry: self.$isSecureEntry)
-                        .iconOverlaySecureEntry(isSecureEntry: self.$isSecureEntry)
+                        .iconOverlaySecureEntry(self.$isSecureEntry)
                         .onTapGesture { self.isPasswordFocused = true }
                     
                 }
