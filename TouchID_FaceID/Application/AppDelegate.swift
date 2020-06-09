@@ -10,6 +10,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        let sceneConfiguration = UISceneConfiguration()
+        sceneConfiguration.delegateClass = MainSceneDelegate.self
+        return sceneConfiguration
+    }
+    
     func applicationWillTerminate(_ application: UIApplication) {
         applicationService.applicationWillTerminate()
     }

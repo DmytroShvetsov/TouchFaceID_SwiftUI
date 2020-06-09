@@ -19,16 +19,18 @@ extension Common.UI.ViewModifiers {
             .padding(buttonPadding)
             
             switch padding {
-                case .paddingToIcon(let length):
+                case .paddingToIcon(let contentLength, let iconLength):
                     body = .init(HStack(spacing: 0) {
                         if side == .right {
                             content
-                                .padding(.trailing, length - buttonPadding)
+                                .padding(.trailing, contentLength - buttonPadding)
                             button
+                                .padding(.trailing, iconLength - buttonPadding)
                         } else {
                             button
+                                .padding(.leading, iconLength - buttonPadding)
                             content
-                                .padding(.leading, length - buttonPadding)
+                                .padding(.leading, contentLength - buttonPadding)
                         }
                     })
                 
@@ -66,7 +68,7 @@ extension Common.UI.ViewModifiers {
 extension Common.UI.ViewModifiers {
     enum Padding {
         case
-            paddingToIcon(CGFloat),
+            paddingToIcon(content: CGFloat, icon: CGFloat),
             padding(content: CGFloat, icon: CGFloat)
     }
 }
@@ -92,8 +94,9 @@ extension View {
     
     func iconOverlaySecureEntry(_ isSecureEntry: Binding<Bool>) -> some View {
         let iconName = isSecureEntry.wrappedValue ? "eye.fill" : "eye.slash.fill"
+        let iconPadding: CGFloat = UIDevice.current.userInterfaceIdiom != .pad ? 10 : 16
         return iconOverlay(image: .init(image: .init(systemName: iconName), color: .init(.appIconGray)),
                            action: { isSecureEntry.wrappedValue.toggle() },
-                           side: .right, padding: .paddingToIcon(0))
+                           side: .right, padding: .paddingToIcon(content: 0, icon: iconPadding))
     }
 }
