@@ -3,6 +3,11 @@ import Foundation
 enum ServicesFactory {
     private static let lock = NSRecursiveLock()
     
+    // ApplicationService
+    static func applicationService() -> ApplicationService {
+        ApplicationServiceImpl()
+    }
+    
     // AuthService
     private static var _authService: AuthService!
     static func authService() -> AuthService {

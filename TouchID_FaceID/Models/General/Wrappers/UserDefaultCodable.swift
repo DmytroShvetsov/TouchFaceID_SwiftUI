@@ -1,5 +1,4 @@
 import Foundation
-import Combine
 
 @propertyWrapper
 struct UserDefaultCodable<T: Codable> {
@@ -10,8 +9,8 @@ struct UserDefaultCodable<T: Codable> {
     let decoder: JSONDecoder
 
     init(_ key: String, defaultValue: T,
-         encoder: JSONEncoder = JSONEncoder.defaultEncoder(),
-         decoder: JSONDecoder = JSONDecoder.defaultDecoder()) {
+         encoder: JSONEncoder = .defaultEncoder(),
+         decoder: JSONDecoder = .defaultDecoder()) {
         
         self.key = key
         self.defaultValue = defaultValue

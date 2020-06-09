@@ -49,7 +49,7 @@ extension UserServiceImpl: UserServiceChangeable {
 private extension UserServiceImpl {
     static let queue = DispatchQueue(label: "UserService.queue", qos: .default)
    
-    @UserDefaultCodable("UserServiceImpl.user", defaultValue: .init(info: .init(), login: "", status: .inactive))
+    @KeychainCodable("UserServiceImpl.user", defaultValue: .init(info: .init(), login: "", status: .inactive))
     static var _user: User
     
     static var user: User {
