@@ -10,6 +10,7 @@ extension SignIn {
         
         @State private var isLoginFocused = false
         @State private var isPasswordFocused = false
+        @State private var isSecureEntry = true
         
         init(viewModel: SignInVM) {
             self.viewModel = viewModel
@@ -56,13 +57,14 @@ extension SignIn {
         private func content(_ geometry: GeometryProxy) -> some View {
             VStack(alignment: .center) {
                 VStack(spacing: 0) {
-                    self.textField("Login", text: self.login, isFirstResponder: self.$isLoginFocused, secureEntry: false)
+                    self.textField("Login", text: self.login, isFirstResponder: self.$isLoginFocused, isSecureEntry: .constant(false))
                         .onTapGesture { self.isLoginFocused = true }
                     Divider()
                         .padding(.trailing, -10)
                         .frame(height: 1, alignment: .trailing)
                         .foregroundColor(.appGray)
-                    self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused, secureEntry: true)
+                    self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused, isSecureEntry: self.$isSecureEntry)
+                        .iconOverlaySecureEntry(isSecureEntry: self.$isSecureEntry)
                         .onTapGesture { self.isPasswordFocused = true }
                     
                 }
@@ -96,8 +98,8 @@ extension SignIn {
                 .frame(width: geometry.size.width)
         }
         
-        private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>, secureEntry: Bool) -> some View {
-            ResponderTextField(placeholder, placeholderColor: .appGray, text: text, textColor: .appText, isFirstResponder: isFirstResponder, isSecureEntry: .constant(secureEntry))
+        private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>, isSecureEntry: Binding<Bool>) -> some View {
+            ResponderTextField(placeholder, placeholderColor: .appGray, text: text, textColor: .appText, isFirstResponder: isFirstResponder, isSecureEntry: isSecureEntry)
                 .frame(height: 38)
                 .padding([.top, .bottom], 5)
                 .padding([.leading, .trailing], 10)
