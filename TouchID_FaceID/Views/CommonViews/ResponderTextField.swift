@@ -8,18 +8,20 @@ struct ResponderTextField: UIViewRepresentable {
     private let placeholder: String
     private let placeholderColor: UIColor
     private let textColor: UIColor
+    private let secureEntry: Bool
     
     @Binding private var text: String
     @Binding private var isFirstResponder: Bool
     
     @Environment(\.layoutDirection) fileprivate var layoutDirection
     
-    init(_ placeholder: String, placeholderColor: UIColor, text: Binding<String>, textColor: UIColor, isFirstResponder: Binding<Bool>) {
+    init(_ placeholder: String, placeholderColor: UIColor, text: Binding<String>, textColor: UIColor, isFirstResponder: Binding<Bool>, secureEntry: Bool = false) {
         self.placeholder = placeholder
         self.placeholderColor = placeholderColor
         self.textColor = textColor
         self._text = text
         self._isFirstResponder = isFirstResponder
+        self.secureEntry = secureEntry
     }
     
     func makeCoordinator() -> Coordinator {
@@ -34,6 +36,12 @@ struct ResponderTextField: UIViewRepresentable {
         textField.attributedPlaceholder = .init(string: placeholder, attributes: [.foregroundColor : placeholderColor])
         textField.delegate = context.coordinator
         textField.addTarget(context.coordinator, action: #selector(context.coordinator.textChanged), for: .editingChanged)
+        
+        if secureEntry {
+            textField.isSecureTextEntry = true
+            textField.clearButtonMode = .whileEditing
+            textField.textContentType = .password
+        }
         
         if layoutDirection == .rightToLeft {
             textField.textAlignment = .right

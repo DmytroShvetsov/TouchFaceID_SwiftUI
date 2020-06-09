@@ -56,13 +56,13 @@ extension SignIn {
         private func content(_ geometry: GeometryProxy) -> some View {
             VStack(alignment: .center) {
                 VStack(spacing: 0) {
-                    self.textField("Login", text: self.login, isFirstResponder: self.$isLoginFocused)
+                    self.textField("Login", text: self.login, isFirstResponder: self.$isLoginFocused, secureEntry: false)
                         .onTapGesture { self.isLoginFocused = true }
                     Divider()
                         .padding(.trailing, -10)
                         .frame(height: 1, alignment: .trailing)
                         .foregroundColor(.appGray)
-                    self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused)
+                    self.textField("Password", text: self.password, isFirstResponder: self.$isPasswordFocused, secureEntry: true)
                         .onTapGesture { self.isPasswordFocused = true }
                     
                 }
@@ -96,8 +96,8 @@ extension SignIn {
                 .frame(width: geometry.size.width)
         }
         
-        private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>) -> some View {
-            ResponderTextField(placeholder, placeholderColor: .appGray, text: text, textColor: .appText, isFirstResponder: isFirstResponder)
+        private func textField(_ placeholder: String, text: Binding<String>, isFirstResponder: Binding<Bool>, secureEntry: Bool) -> some View {
+            ResponderTextField(placeholder, placeholderColor: .appGray, text: text, textColor: .appText, isFirstResponder: isFirstResponder, secureEntry: secureEntry)
                 .frame(height: 38)
                 .padding([.top, .bottom], 5)
                 .padding([.leading, .trailing], 10)
