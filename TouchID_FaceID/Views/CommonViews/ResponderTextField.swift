@@ -53,6 +53,8 @@ struct ResponderTextField: UIViewRepresentable {
         textField.adjustsFontForContentSizeCategory = true
         textField.font = UIFont.preferredFont(forTextStyle: .body)
         
+        textField.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
+        
         return textField
     }
     
