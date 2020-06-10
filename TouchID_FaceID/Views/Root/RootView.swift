@@ -5,15 +5,19 @@ extension Root {
         @ObservedObject var viewModel: RootVM
         
         var body: some View {
-            Group {
-                if viewModel.state == .authorized {
-                    Main.MainView(viewModel: .init())
-                } else if viewModel.state == .notAuthorized {
-                    SignIn.SignInView(viewModel: .init())
-                } else {
-                    EmptyView()
+            VStack {
+                Group {
+                    if viewModel.state == .authorized {
+                        Main.MainView(viewModel: .init())
+                    } else if viewModel.state == .notAuthorized {
+                        SignIn.SignInView(viewModel: .init())
+                    } else {
+                        EmptyView()
+                    }
                 }
+                .transition(.opacity)
             }
+            .animation(.default)
         }
     }
 }

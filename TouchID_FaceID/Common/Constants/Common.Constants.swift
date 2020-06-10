@@ -4,7 +4,7 @@ import Foundation
 extension Common {
     enum Constants {
         enum network {
-            static let sampleApiUrl = URL(string: "http://google.com/")!
+            static let sampleApiUrl = URL(string: "https://google.com/")!
         }
     }
 }
