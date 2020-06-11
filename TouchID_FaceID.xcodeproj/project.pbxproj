@@ -26,6 +26,7 @@
 		C01A46B22477441F00EDA24E /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A46B12477441F00EDA24E /* UserDefault.swift */; };
 		C01A46B4247746B700EDA24E /* UserDefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A46B3247746B700EDA24E /* UserDefaultCodable.swift */; };
 		C0245BA3248ECDF4003EFBD3 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0245BA2248ECDF4003EFBD3 /* KeychainItem.swift */; };
+		C02D6339249156650069E1B4 /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D6338249156650069E1B4 /* BiometricAuth.swift */; };
 		C037299324656AE4003AA9AB /* Common.UI.ViewModifiers.KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037299224656AE4003AA9AB /* Common.UI.ViewModifiers.KeyboardAdaptive.swift */; };
 		C0377A6924741C9A007345DA /* Network.Common.SampleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0377A6824741C9A007345DA /* Network.Common.SampleAPI.swift */; };
 		C0377A6B24741DB0007345DA /* RequestTimeoutPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0377A6A24741DB0007345DA /* RequestTimeoutPresentable.swift */; };
@@ -110,6 +111,7 @@
 		C01A46B12477441F00EDA24E /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		C01A46B3247746B700EDA24E /* UserDefaultCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultCodable.swift; sourceTree = "<group>"; };
 		C0245BA2248ECDF4003EFBD3 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		C02D6338249156650069E1B4 /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
 		C037299224656AE4003AA9AB /* Common.UI.ViewModifiers.KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.UI.ViewModifiers.KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		C0377A6824741C9A007345DA /* Network.Common.SampleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.SampleAPI.swift; sourceTree = "<group>"; };
 		C0377A6A24741DB0007345DA /* RequestTimeoutPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTimeoutPresentable.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				C005280624745A1C00E66057 /* AppError.swift */,
 				C0245BA2248ECDF4003EFBD3 /* KeychainItem.swift */,
+				C02D6338249156650069E1B4 /* BiometricAuth.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				C00258FE2462E74200407AA1 /* SignInView.swift in Sources */,
 				C0C743C92478692E00FE7E04 /* Root.Models.State.swift in Sources */,
 				C0CCDDC424730F4100543311 /* PluginType.swift in Sources */,
+				C02D6339249156650069E1B4 /* BiometricAuth.swift in Sources */,
 				C055AB73247714480020A5F9 /* UserService.swift in Sources */,
 				C01A46B4247746B700EDA24E /* UserDefaultCodable.swift in Sources */,
 				C0B4690424740A7F0020FCF6 /* Network.Core.Plugins.NetworkLogger.swift in Sources */,
