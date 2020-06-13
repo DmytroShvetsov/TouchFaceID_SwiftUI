@@ -7,6 +7,7 @@ extension Main {
         
         private var name: Binding<String>
         @State private var isNameFocused = false
+        private var biometricAuthAllowed: Binding<Bool>
         
         init(viewModel: MainVM) {
             self.viewModel = viewModel
@@ -15,6 +16,12 @@ extension Main {
                 viewModel.state.name
             }, set: {
                 viewModel.send(event: .typingName($0))
+            })
+            
+            biometricAuthAllowed = .init(get: {
+                viewModel.state.biometricAuthAllowed
+            }, set: { _ in
+                viewModel.send(event: .toggleBiometricAuthAllowance)
             })
         }
         
@@ -59,7 +66,10 @@ extension Main {
                         .foregroundColor(.appGray))
                     .shadow(color: Color.appGreen, radius: 1)
                 
-                Spacer().frame(height: 10)
+                Toggle("Allow sign in via Face ID", isOn: biometricAuthAllowed)
+                    .font(.subheadline)
+                    .foregroundColor(.appCaptionOut)
+                    .padding(10)
                 
                 Button(action: {
                     self.viewModel.send(event: .logout)

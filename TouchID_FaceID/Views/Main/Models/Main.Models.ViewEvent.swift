@@ -4,6 +4,7 @@ extension Main.Models {
     enum ViewEvent {
         case
             logout,
-            typingName(String)
+            typingName(String),
+            toggleBiometricAuthAllowance
     }
 }

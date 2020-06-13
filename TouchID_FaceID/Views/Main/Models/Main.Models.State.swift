@@ -3,6 +3,7 @@ import Foundation
 extension Main.Models {
     struct State: Equatable {
         var name: String
+        var biometricAuthAllowed: Bool
         var state: State
     }
 }
@@ -13,6 +14,7 @@ extension Main.Models.State {
         case
             `default`,
             savingUserName,
+            savingBiometricAuthAllowance,
             logout
     }
 }

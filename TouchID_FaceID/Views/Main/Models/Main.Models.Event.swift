@@ -6,6 +6,7 @@ extension Main.Models {
             viewEvent(ViewEvent),
             updateUserName(String),
             userNameSaved,
+            updateBiometricAuthAllowance(Bool),
             logoutExecuted
     }
 }
