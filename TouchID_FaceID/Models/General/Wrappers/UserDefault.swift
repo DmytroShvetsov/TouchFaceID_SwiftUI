@@ -17,6 +17,7 @@ struct UserDefault<T> {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: key)
+            NotificationCenter.default.post(name: .init(key), object: newValue)
         }
     }
 }

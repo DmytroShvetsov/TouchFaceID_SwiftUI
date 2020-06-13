@@ -29,6 +29,7 @@ struct UserDefaultCodable<T: Codable> {
             let data = try? encoder.encode(newValue)
             assert(data != nil, "\nclass: \(Self.self), \nkey: \(key), \nvalue: \(newValue)\n")
             UserDefaults.standard.set(data, forKey: key)
+            NotificationCenter.default.post(name: .init(key), object: newValue)
         }
     }
 }
