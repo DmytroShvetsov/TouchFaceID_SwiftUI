@@ -13,20 +13,34 @@ extension Main {
         private let input = PassthroughSubject<Event, Never>()
 
         init() {
-            state = .init(name: "", biometricAuthAllowed: UserDefaults.biometricAuthAllowed, state: .default)
+            let biometricAuthTypeLabel = BiometricAuth().biometricType().label
+            let availability: Models.State.BiometricAuthAvailability = biometricAuthTypeLabel == nil ? .unavailable : .available
+
+            var feedbacks: [Feedback<State, Event>] = [
+                Self.input(input: input.eraseToAnyPublisher()),
+                Self.userName(),
+                Self.updateUserName(),
+                Self.logout()
+            ]
+            
+            if availability == .available {
+                feedbacks.append(contentsOf: [
+                    Self.biometricAuthAllowed(),
+                    Self.updateBiometricAuthAllowance()
+                ])
+            }
+            
+            state = .init(name: "",
+                          biometricAuthTypeLabel: biometricAuthTypeLabel ?? "",
+                          biometricAuthAllowed: UserDefaults.biometricAuthAllowed,
+                          biometricAuthAvailability: availability,
+                          state: .default)
 
             Publishers.system(
                 initial: state,
                 reduce: Self.reduce,
                 scheduler: RunLoop.main,
-                feedbacks: [
-                    Self.input(input: input.eraseToAnyPublisher()),
-                    Self.userName(),
-                    Self.updateUserName(),
-                    Self.biometricAuthAllowed(),
-                    Self.updateBiometricAuthAllowance(),
-                    Self.logout()
-                ],
+                feedbacks: feedbacks,
                 skipTransitionStates: true,
                 skipInitialState: true,
                 removeDuplicates: true

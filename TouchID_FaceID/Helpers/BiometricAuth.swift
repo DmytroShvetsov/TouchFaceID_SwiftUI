@@ -69,5 +69,18 @@ final class BiometricAuth {
 extension BiometricAuth {
     enum BiometricType {
         case none, touchID, faceID
+        
+        var label: String? {
+            switch self {
+                case .faceID:
+                    return "Face ID"
+                
+                case .touchID:
+                    return "Touch ID"
+                
+                default:
+                    return nil
+            }
+        }
     }
 }

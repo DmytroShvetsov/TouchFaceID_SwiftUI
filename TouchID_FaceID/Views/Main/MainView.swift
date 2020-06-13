@@ -66,10 +66,16 @@ extension Main {
                         .foregroundColor(.appGray))
                     .shadow(color: Color.appGreen, radius: 1)
                 
-                Toggle("Allow sign in via Face ID", isOn: biometricAuthAllowed)
-                    .font(.subheadline)
-                    .foregroundColor(.appCaptionOut)
-                    .padding(10)
+                if viewModel.state.biometricAuthAvailability == .available {
+                    Toggle("Allow sign in via \(viewModel.state.biometricAuthTypeLabel)", isOn: biometricAuthAllowed)
+                        .font(.subheadline)
+                        .foregroundColor(.appCaptionOut)
+                        .padding([.leading, .trailing], 10)
+                        .padding(.top, 12)
+                        .padding(.bottom, 2)
+                } else {
+                    Spacer().frame(height: 10)
+                }
                 
                 Button(action: {
                     self.viewModel.send(event: .logout)
