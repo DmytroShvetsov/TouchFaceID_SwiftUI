@@ -13,7 +13,14 @@ extension SignIn {
         private let input = PassthroughSubject<Event, Never>()
         
         init() {
-            state = .init(login: "", password: "", state: .idle)
+            let biometricAuth = BiometricAuth()
+            let availability = biometricAuth.canEvaluatePolicy() && UserDefaults.biometricAuthAllowed
+            
+            state = .init(login: "",
+                          password: "",
+                          biometricAuthType: biometricAuth.biometricType(),
+                          biometricAuthAvailable: availability,
+                          state: .idle)
 
             Publishers.system(
                 initial: state,
@@ -89,7 +96,10 @@ private extension VM {
                             state.state = .error(AppError.init(error: "Password should not be empty."))
                             break
                         }
-                        state.state = .authorization
+                        state.state = .authorization(biometric: false)
+                    
+                    case .viewEvent(.signInViaBiometricAuth):
+                        state.state = .authorization(biometric: true)
                     
                     default:
                         break
@@ -113,19 +123,28 @@ private extension VM {
     
     static func authorization() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
-            guard case .authorization = state.state else { return Empty().eraseToAnyPublisher() }
+            guard case .authorization(let biometric) = state.state else { return Empty().eraseToAnyPublisher() }
             
-            return ServicesFactory.authService().signIn(login: state.login, password: state.password)
-                .map {
-                    switch $0 {
-                        case .success(let token):
-                            return Event.authorized(token)
-                        case .failed(let error):
-                            return Event.failed(error)
-                    }
+            if biometric {
+                return ServicesFactory.authService().signInViaBiometricAuth()
+                    .map { _ in .authorized }
+                    .catch { Just(.failed($0)) }
+                    .receive(on: DispatchQueue.main)
+                    .eraseToAnyPublisher()
+            } else {
+                return ServicesFactory.authService().signIn(login: state.login, password: state.password)
+                    .map {
+                        switch $0 {
+                            case .success:
+                                return .authorized
+                            case .failed(let error):
+                                return .failed(error)
+                        }
+                }
+                .replaceError(with: .failed(AppError(error: "Error. Please try again.")))
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
             }
-            .replaceError(with: .failed(AppError(error: "Error. Please try again.")))
-            .eraseToAnyPublisher()
         }
     }
 
@@ -134,8 +153,8 @@ private extension VM {
             guard case .idle = state.state else { return Empty().eraseToAnyPublisher() }
             
             return ServicesFactory.userService().user
-                .receive(on: DispatchQueue.main)
                 .map { .previousUserLogin($0.login) }
+                .receive(on: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
     }

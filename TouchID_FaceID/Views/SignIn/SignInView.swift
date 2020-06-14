@@ -91,6 +91,10 @@ extension SignIn {
                         .padding([.leading, .bottom, .trailing], 16)
                     
                 }
+                
+                if viewModel.state.biometricAuthAvailable {
+                    biometricAuthButton()
+                }
             }
             .frame(idealWidth: geometry.size.width * 0.7,
                    maxWidth: geometry.size.width * 0.7,
@@ -103,6 +107,29 @@ extension SignIn {
                 .frame(height: 38)
                 .padding([.top, .bottom], 5)
                 .padding([.leading, .trailing], 10)
+        }
+        
+        private func biometricAuthButton() -> some View {
+            let image: Image
+            
+            if case .faceID = viewModel.state.biometricAuthType {
+                image = Image(systemName: "faceid")
+            } else if case .touchID = viewModel.state.biometricAuthType {
+                image = Image("touch_id_icon")
+            } else {
+                image = Image("")
+            }
+            
+            return Button(action: {
+                self.viewModel.send(event: .signInViaBiometricAuth)
+            }) {
+                image
+                    .resizable()
+                    .foregroundColor(.appCaptionOut)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 44 , height: 44, alignment: .top)
+                    .padding(.top, -6)
+            }
         }
         
         private var errorView: some View {

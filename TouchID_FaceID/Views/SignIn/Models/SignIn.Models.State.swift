@@ -4,6 +4,8 @@ extension SignIn.Models {
     struct State: Equatable {
         var login: String
         var password: String
+        var biometricAuthType: BiometricAuth.BiometricType
+        var biometricAuthAvailable: Bool
         var state: State
     }
 }
@@ -14,7 +16,7 @@ extension SignIn.Models.State {
         case
             idle,
             `default`,
-            authorization,
+            authorization(biometric: Bool),
             authorized,
             error(Error)
         

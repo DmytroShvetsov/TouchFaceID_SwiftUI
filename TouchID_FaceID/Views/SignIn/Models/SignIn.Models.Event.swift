@@ -5,7 +5,7 @@ extension SignIn.Models {
         case
             viewEvent(ViewEvent),
             previousUserLogin(String),
-            authorized(_ token: String),
+            authorized,
             failed(Error)
     }
 }
