@@ -49,7 +49,7 @@ extension UserServiceImpl: UserServiceChangeable {
 private extension UserServiceImpl {
     static let queue = DispatchQueue(label: "UserService.queue", qos: .default)
    
-    @KeychainCodable("UserServiceImpl.user", defaultValue: .init(info: .init(), login: "", status: .inactive))
+    @KeychainCodable("UserServiceImpl.user", defaultValue: .init(info: .init(), login: "", status: .unknown))
     static var _user: User
     
     static var user: User {
@@ -77,7 +77,7 @@ private extension UserServiceImpl {
     
     static func logout() {
         queue.async {
-            user.status = .inactive
+            user.status = user.status.toggle()
         }
     }
 }

@@ -4,6 +4,7 @@ import Combine
 protocol AuthService {
     var isAuthorized: AnyPublisher<Bool, Never> { get }
     func signIn(login: String, password: String) -> AnyPublisher<Network.Common.Responses.AuthResponse, Network.Common.Error>
+    func signInViaBiometricAuth() -> AnyPublisher<Void, AppError>
 }
 
 
@@ -18,9 +19,11 @@ final class AuthServiceImpl {
 // MARK: - AuthService
 extension AuthServiceImpl: AuthService {
     var isAuthorized: AnyPublisher<Bool, Never> {
-        userService.user
-            .map { $0.status.token() != nil }
-            .eraseToAnyPublisher()
+        userService.user.map {
+            guard case .active = $0.status else { return false }
+            return true
+        }
+        .eraseToAnyPublisher()
     }
     
     func signIn(login: String, password: String) -> AnyPublisher<Network.Common.Responses.AuthResponse, Network.Common.Error> {
@@ -39,6 +42,31 @@ extension AuthServiceImpl: AuthService {
                         break
                 }
             })
+            .eraseToAnyPublisher()
+    }
+    
+    func signInViaBiometricAuth() -> AnyPublisher<Void, AppError> {
+        BiometricAuth().authenticate()
+            .flatMap {
+                self.userService.user
+                    .mapError { _ in .init(error: "") }
+        }
+        .tryMap { user -> (String, User.Status) in
+            switch user.status {
+                case .inactive:
+                    return (user.login, user.status.toggle())
+                case .active:
+                    return (user.login, user.status)
+                case .unknown:
+                    assertionFailure("Shouldn't ever get here.e")
+                    throw AppError(error: "Please try again.")
+            }
+        }
+        .mapError { $0 as! AppError }
+        .handleEvents(receiveOutput: {
+            self.userService.updateUser(login: $0, status: $1)
+        })
+            .map { _ in Void() }
             .eraseToAnyPublisher()
     }
 }

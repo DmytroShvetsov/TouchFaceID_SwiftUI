@@ -26,13 +26,13 @@ final class BiometricAuth {
         context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
-    func authenticate() -> AnyPublisher<Void, Error> {
+    func authenticate() -> AnyPublisher<Void, AppError> {
         guard canEvaluatePolicy() else {
              return Fail(error: AppError(error: "Biometric auth is not available."))
                 .eraseToAnyPublisher()
         }
         
-        let publisher = PassthroughSubject<Void, Error>()
+        let publisher = PassthroughSubject<Void, AppError>()
         
         context.evaluatePolicy(policy, localizedReason: authReason) { success, error in
             guard !success else { return publisher.send(Void()) }

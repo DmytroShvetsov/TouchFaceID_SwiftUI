@@ -20,12 +20,21 @@ extension User {
 extension User {
     enum Status: Codable {
         case
+            unknown,
             active(token: String),
-            inactive
-
-        func token() -> String? {
-            guard case let .active(token) = self else { return nil }
-            return token
+            inactive(token: String)
+            
+        func toggle() -> Status {
+            switch self {
+                case .active(let token):
+                    return .inactive(token: token)
+                
+                case .inactive(let token):
+                    return .active(token: token)
+                
+                case .unknown:
+                    return self
+            }
         }
         
         // Codable
@@ -41,8 +50,12 @@ extension User {
                     try container.encode("active", forKey: .key)
                     try container.encode(token, forKey: .data)
                 
-                case .inactive:
+                case .inactive(let token):
                     try container.encode("inactive", forKey: .key)
+                    try container.encode(token, forKey: .data)
+                
+                case .unknown:
+                    try container.encode("unknown", forKey: .key)
             }
         }
            
@@ -52,12 +65,16 @@ extension User {
             let key: String = try container.decode(.key)
             
             switch key {
-                case "inactive":
-                    self = .inactive
-                
                 case "active":
                     guard let token: String = try? container.decode(.data) else { fallthrough }
                     self = .active(token: token)
+                
+                case "inactive":
+                    guard let token: String = try? container.decode(.data) else { fallthrough }
+                    self = .inactive(token: token)
+                
+                case "unknown":
+                    self = .unknown
                     
                 default:
                     throw DecodingError.dataCorrupted(.init(codingPath: [CodingKeys.key], debugDescription: "error"))
