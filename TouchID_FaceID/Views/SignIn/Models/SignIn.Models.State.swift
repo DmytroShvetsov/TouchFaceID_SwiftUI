@@ -35,8 +35,10 @@ extension SignIn.Models.State {
                 case (.error(let lhsError), .error(let rhsError)) where lhsError.localizedDescription == rhsError.localizedDescription:
                     fallthrough
                     
-                case (.default, .default),
-                     (.authorization, .authorization),
+                case (.idle, .idle),
+                     (.default, .default),
+                     (.authorization(true), .authorization(true)),
+                     (.authorization(false), .authorization(false)),
                      (.authorized, .authorized):
                     return true
                     

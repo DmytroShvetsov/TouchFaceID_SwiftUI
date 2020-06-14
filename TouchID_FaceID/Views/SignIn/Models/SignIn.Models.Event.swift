@@ -5,6 +5,7 @@ extension SignIn.Models {
         case
             viewEvent(ViewEvent),
             previousUserLogin(String),
+            initiateBiometricAuth,
             authorized,
             failed(Error)
     }

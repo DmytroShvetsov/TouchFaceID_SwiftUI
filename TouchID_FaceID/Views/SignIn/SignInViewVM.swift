@@ -29,6 +29,7 @@ extension SignIn {
                 feedbacks: [
                     Self.input(input: input.eraseToAnyPublisher()),
                     Self.authorization(),
+                    Self.autoBiometricAuth(),
                     Self.previousUserLogin()
                 ],
                 skipTransitionStates: true,
@@ -58,15 +59,23 @@ private extension VM {
         
         switch state.state {
             case .idle:
-                state.state = .default
-                fallthrough
-            
-            case .default:
                 switch event {
                     case .previousUserLogin(let login):
                         guard state.login != login else { break }
                         state.login = login
+                        state.state = .default
                         
+                    default:
+                        break
+                }
+                
+                fallthrough
+            
+            case .default:
+                switch event {
+                    case .initiateBiometricAuth:
+                        state.state = .authorization(biometric: true)
+                    
                     default:
                         break
                 }
@@ -158,8 +167,30 @@ private extension VM {
                 .eraseToAnyPublisher()
         }
     }
+
+    static func autoBiometricAuth() -> Feedback<State, Event> {
+        Feedback { (state: State) -> AnyPublisher<Event, Never> in
+            guard case .default = state.state, !Self.biometricAuthHasBeenInitiated
+            else { return Empty().eraseToAnyPublisher() }
+            
+            guard state.biometricAuthAvailable else {
+                Self.biometricAuthHasBeenInitiated = true
+                return Empty().eraseToAnyPublisher()
+            }
+            
+            return Just(.initiateBiometricAuth)
+                .handleEvents(receiveOutput: { _ in
+                    Self.biometricAuthHasBeenInitiated = true
+                })
+                .eraseToAnyPublisher()
+        }
+    }
     
     static func input(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
     }
+}
+
+private extension VM {
+    static var biometricAuthHasBeenInitiated = false
 }
