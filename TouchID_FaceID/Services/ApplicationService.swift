@@ -25,6 +25,7 @@ private extension ApplicationServiceImpl {
     
     func clearStorages() {
         KeychainItem.deleteAll()
+        UserDefaults.clearStorage()
     }
 }
 
