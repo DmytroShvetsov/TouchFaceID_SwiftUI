@@ -12,6 +12,8 @@ extension SignIn {
         @State private var isPasswordFocused = false
         @State private var isSecureEntry = true
         
+        @Environment(\.verticalSizeClass) var verticalSizeClass
+        
         init(viewModel: SignInVM) {
             self.viewModel = viewModel
             
@@ -42,7 +44,10 @@ extension SignIn {
                         }
                     }
                 }
-                .keyboardAdaptive { $1 - max($0.size.height - $1 - $1, 0) }
+                .keyboardAdaptive {
+                    guard self.verticalSizeClass != .compact else { return $1 }
+                    return $1 - max($0.size.height - $1 - $1, 0)
+                }
                 .edgesIgnoringSafeArea([.bottom, .top])
             }
         }
@@ -96,6 +101,7 @@ extension SignIn {
                     biometricAuthButton()
                 }
             }
+            .padding(.top, 2)
             .frame(idealWidth: geometry.size.width * 0.7,
                    maxWidth: geometry.size.width * 0.7,
                    minHeight: geometry.size.height)
@@ -128,8 +134,9 @@ extension SignIn {
                     .foregroundColor(.appCaptionOut)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 44 , height: 44, alignment: .top)
-                    .padding(.top, -6)
             }
+            .padding(.top, -10)
+            .padding(.bottom, 16)
         }
         
         private var errorView: some View {
