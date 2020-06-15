@@ -85,6 +85,7 @@
 		C0CCDDC02472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDBF2472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift */; };
 		C0CCDDC22472EDB800543311 /* Codable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDC12472EDB800543311 /* Codable+.swift */; };
 		C0CCDDC424730F4100543311 /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCDDC324730F4100543311 /* PluginType.swift */; };
+		C0F003412498000A005EDFA8 /* Common.UI.ViewModifiers.ContentSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F003402498000A005EDFA8 /* Common.UI.ViewModifiers.ContentSize.swift */; };
 		C0FFE41F24789EC800456403 /* Main.Models.Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE41E24789EC800456403 /* Main.Models.Event.swift */; };
 		C0FFE42124789ED500456403 /* Main.Models.ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE42024789ED500456403 /* Main.Models.ViewEvent.swift */; };
 		C0FFE42324789EDF00456403 /* Main.Models.State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFE42224789EDF00456403 /* Main.Models.State.swift */; };
@@ -174,6 +175,7 @@
 		C0CCDDBF2472CBE400543311 /* Network.Common.Responses.ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.Common.Responses.ErrorResponse.swift; sourceTree = "<group>"; };
 		C0CCDDC12472EDB800543311 /* Codable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+.swift"; sourceTree = "<group>"; };
 		C0CCDDC324730F4100543311 /* PluginType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginType.swift; sourceTree = "<group>"; };
+		C0F003402498000A005EDFA8 /* Common.UI.ViewModifiers.ContentSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.UI.ViewModifiers.ContentSize.swift; sourceTree = "<group>"; };
 		C0FFE41E24789EC800456403 /* Main.Models.Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.Event.swift; sourceTree = "<group>"; };
 		C0FFE42024789ED500456403 /* Main.Models.ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.ViewEvent.swift; sourceTree = "<group>"; };
 		C0FFE42224789EDF00456403 /* Main.Models.State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.Models.State.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				C037299224656AE4003AA9AB /* Common.UI.ViewModifiers.KeyboardAdaptive.swift */,
 				4E377B1C248FB44100112FA3 /* Common.UI.ViewModifiers.IconOverlay.swift */,
+				C0F003402498000A005EDFA8 /* Common.UI.ViewModifiers.ContentSize.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				C0FFE42324789EDF00456403 /* Main.Models.State.swift in Sources */,
 				C0052804247458A000E66057 /* Network.Common.Responses.AuthResponse.swift in Sources */,
 				4E84F285248924D900E66B11 /* View+PreviewTemplates.swift in Sources */,
+				C0F003412498000A005EDFA8 /* Common.UI.ViewModifiers.ContentSize.swift in Sources */,
 				C055AB79247731720020A5F9 /* ServicesFactory.swift in Sources */,
 				C077706624705EA400759F35 /* Network.Core.DataProvider.swift in Sources */,
 				C07770632470226F00759F35 /* Network.swift in Sources */,

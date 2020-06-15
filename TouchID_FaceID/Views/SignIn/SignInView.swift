@@ -133,7 +133,8 @@ extension SignIn {
                     .resizable()
                     .foregroundColor(.appCaptionOut)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 44 , height: 44, alignment: .top)
+                    .contentSize(width: 44, height: 44)
+                    .frame(alignment: .top)
             }
             .padding(.top, -10)
             .padding(.bottom, 16)
